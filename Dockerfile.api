@@ -1,0 +1,10 @@
+FROM alpine:latest
+
+
+
+# RUN --mount=type=secret,id=secret_token,required ls -la /run/secrets/
+
+RUN --mount=type=secret,id=secret_token set -eux && \
+     echo "my secret data is $(cat /run/secrets/secret_token)" > ~/.secret
+
+CMD ["tail", "-f", "/dev/null"]
